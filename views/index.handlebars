@@ -32,6 +32,28 @@
 
     <!-- Template Stylesheet -->
     <link href="../static/css/style.css" rel="stylesheet">
+
+
+    <script>
+        function validateForm() {
+            console.log("hii")
+            let w_date = document.forms["myForm"]["Date"].value;
+            console.log(date);
+            curr_date = new Date();
+            console.log(curr_date);
+            let x = document.forms["myForm"]["Contact_number"].value;
+            if (x < 1000000000 || x > 10000000000) {
+                alert("Contact number should be 10 digit only");
+                return false;
+            }
+            if (w_date < curr_date) {
+                alert("Please select a valid date");
+                return false;
+            }
+            alert("form is submitted successfully");
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -617,7 +639,8 @@
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
                         <h1 class="text-white mb-4">Book A Table Online</h1>
-                        <form name="myForm" method="post" aria-required="true">
+                        <form id="userform" name="myForm" action="" onsubmit="return validateForm()" method="post"
+                            aria-required="true">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -635,18 +658,41 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="date" class="form-control datetimepicker-input" id="datetime"
-                                            placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker"
-                                            name="Date" required />
+                                        <input type="date" class="form-control" id="datetime" placeholder="Date & Time"
+                                            data-target="#date3" name="Date" required />
                                         <label for="datetime">Date</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="time" class="form-control datetimepicker-input" id="datetime"
-                                            placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker"
-                                            name="Date" required />
-                                        <label for="datetime">Time</label>
+                                    <div class="form-floating" id="date3" data-target-input="nearest">
+                                        <select class="form-select" type="time" id="Time" placeholder="Booking Time"
+                                            name="Time" required>
+                                            <option value="9:00">9:00 AM</option>
+                                            <option value="9:30">9:30 AM</option>
+                                            <option value="10:00">10:00 AM</option>
+                                            <option value="10:30">10:30 AM</option>
+                                            <option value="11:00">11:00 AM</option>
+                                            <option value="11:30">11:30 AM</option>
+                                            <option value="12:00">12:00 PM</option>
+                                            <option value="12:30">12:30 PM</option>
+                                            <option value="13:00">1:00 PM</option>
+                                            <option value="13:30">1:30 PM</option>
+                                            <option value="14:00">2:00 PM</option>
+                                            <option value="14:30">2:30 PM</option>
+                                            <option value="15:00">3:00 PM</option>
+                                            <option value="15:30">3:30 PM</option>
+                                            <option value="16:00">4:00 PM</option>
+                                            <option value="16:30">4:30 PM</option>
+                                            <option value="17:00">5:00 PM</option>
+                                            <option value="17:30">5:30 PM</option>
+                                            <option value="18:00">6:00 PM</option>
+                                            <option value="18:30">6:30 PM</option>
+                                            <option value="19:00">7:00 PM</option>
+                                            <option value="19:30">7:30 PM</option>
+                                            <option value="20:00">8:00 PM</option>
+                                            <option value="20:30">8:30 PM</option>
+                                        </select>
+                                        <label for="Time">Time</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -661,9 +707,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="email" placeholder="Your Email"
-                                            name="Email" required>
-                                        <label for="email">Contact Number</label>
+                                        <input type="number" class="form-control" id="Contact_number"
+                                            name="Contact_number" placeholder="Enter contact number" required>
+                                        <label for="Contact_number">Contact</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -674,7 +720,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input class="btn btn-primary w-100 py-3" type="submit" value="Book Now">
+                                    <input class="btn btn-primary w-100 py-3" type="submit" value="Submit"
+                                        id="submitForm" name="Submit">
                                 </div>
                             </div>
                         </form>
@@ -926,6 +973,6 @@
 
     <!-- Template Javascript -->
     <script src="../static/js/main.js"></script>
-</body>
+    <script src="../app.js"></script>
 
 </html>
