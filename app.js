@@ -8,7 +8,7 @@ const mysql = require('mysql2');
 const mongoose = require('mongoose')
 
 const app = express();
-const port = 80;
+const port = 8080;
 
 // app.use(bodyParser.json());
 
@@ -147,7 +147,7 @@ app.get("/testimonial", (req, res) => {
 app.post('/contact', (req, res) => {
     const { Name, Email, Contact_number, Address } = req.body;
 
-    const sql = 'INSERT INTO customer (name, email,Contact_number,Address) VALUES (?,?,?,?)';
+    const sql = 'INSERT INTO booking (name, email,Contact_number,Address) VALUES (?,?,?,?)';
     const values = [Name, Email, Contact_number, Address];
 
     connection.query(sql, values, (error, results) => {
@@ -191,10 +191,10 @@ app.post('/index', (req, res) => {
     });
 });
 app.post('/', (req, res) => {
-    const { Name, Email, Date, Number_of_people, Special_request } = req.body;
+    const { Name, Email, Date, Time, Number_of_people, Contact_number, Special_request } = req.body;
 
-    const sql = 'INSERT INTO customer (name, email, Date, Number_of_people, Special_request) VALUES (?,?,?,?,?)';
-    const values = [Name, Email, Date, Number_of_people, Special_request];
+    const sql = 'INSERT INTO user_booking (name, email, Date,Time, Number_of_people,Contact_number, Special_request) VALUES (?,?,?,?,?,?,?)';
+    const values = [Name, Email, Date, Time, Number_of_people, Contact_number, Special_request];
 
     connection.query(sql, values, (error, results) => {
         if (error) {
@@ -204,6 +204,7 @@ app.post('/', (req, res) => {
         return res.redirect('/');
     });
 });
+//
 app.listen(port, () => {
     console.log(`this application started successfully on port ${port}`);
 });
