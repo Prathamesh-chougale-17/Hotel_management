@@ -36,8 +36,14 @@
     <script>
         function validateForm() {
             let x = document.forms["myForm"]["Contact_number"].value;
+            let y = document.forms["myForm"]['Date'].value;
             if (x < 1000000000 || x > 10000000000) {
                 alert("Contact number should be 10 digit only");
+                return false;
+            }
+
+            if (!isGreaterThanToday(y)) {
+                alert("Date should be greater than today");
                 return false;
             }
             alert("form is submitted successfully")
